@@ -1,0 +1,29 @@
+{
+  "name": "@allanoricil/nrg-cli",
+  "version": "0.0.0-beta.2",
+  "description": "A very simple CLI for building an nrg project",
+  "author": "allanoricil <allanoricilcos@outlook.com>",
+  "license": "MIT",
+  "publishConfig": {
+    "access": "public"
+  },
+  "type": "module",
+  "main": "index.js",
+  "bin": {
+    "nrg": "./dist/index.js"
+  },
+  "scripts": {
+    "build": "tsc",
+    "prepublish": "npm run build"
+  },
+  "dependencies": {
+    "@allanoricil/nrg-core": "^0.0.0-beta.8",
+    "yargs": "^17.7.2"
+  },
+  "devDependencies": {
+    "@types/node": "^22.5.3",
+    "@types/yargs": "^17.0.33",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.5.4"
+  }
+}
