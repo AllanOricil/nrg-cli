@@ -1,6 +1,6 @@
 {
   "name": "@allanoricil/nrg-cli",
-  "version": "0.0.0-beta.2",
+  "version": "0.0.0-beta.4",
   "description": "A very simple CLI for building an nrg project",
   "author": "allanoricil <allanoricilcos@outlook.com>",
   "license": "MIT",
@@ -16,8 +16,11 @@
     "build": "tsc",
     "prepublish": "npm run build"
   },
+  "peerDependencies": {
+    "@allanoricil/node-red-node": "0.0.0-beta.12"
+  },
   "dependencies": {
-    "@allanoricil/nrg-core": "^0.0.0-beta.8",
+    "@allanoricil/nrg-core": "^0.0.0-beta.9",
     "yargs": "^17.7.2"
   },
   "devDependencies": {
