@@ -6,6 +6,7 @@ import {
   build,
   startNodeRed,
   startWatcher,
+  startListener,
   loadConfig,
 } from "@allanoricil/nrg-core";
 import * as path from "path";
@@ -71,16 +72,18 @@ yargs(hideBin(process.argv))
     },
     async (argv) => {
       const { config, filepath } = await loadConfig();
+      const { port, listener } = await startListener(config);
 
-      config.debug = argv.debug;
-      config.open = argv.open;
+      config.dev.debug = argv.debug;
+      config.dev.open = argv.open;
+      config.dev.port = port;
+
       if (argv.watch) {
-        const port = await startWatcher(config, filepath);
-        config.watch.port = port;
+        await startWatcher(config, filepath);
       }
 
       await build(config);
-      await startNodeRed(config);
+      await startNodeRed(config, listener);
     }
   )
   .demandCommand(1, "You need at least one command before moving on")
