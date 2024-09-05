@@ -5,6 +5,7 @@
 ## Current Features
 
 ### `nrg build`
+
 The `nrg build` command compiles and packages your Node-RED nodes or plugins, ensuring everything is bundled and ready for deployment.
 
 ```bash
@@ -22,7 +23,6 @@ nrg dev
 ```
 
 Use this command to work interactively on your custom nodes or plugins, making development faster and smoother.
-
 
 ## Upcomming Features
 
@@ -54,10 +54,10 @@ nrg create plugin <plugin-name>
 
 ## Installation
 
-To get started with nrg, install it globally using npm:
+To get started with nrg, install it as a dev dependency on your `nrg` project, using npm:
 
 ```bash
-npm install -g nrg
+npm install @allanoricil/nrg-cli -D
 ```
 
 ## Usage
@@ -73,8 +73,6 @@ Stay tuned for the upcoming nrg create commands to make project setup even faste
 
 I welcome contributions! If you'd like to help improve nrg, feel free to open issues or submit pull requests. Your feedback is appreciated.
 
-
 ## License
 
 This project is licensed under the [MIT License](https://github.com/AllanOricil/nrg-cli/blob/main/LICENSE).
-
