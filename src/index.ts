@@ -36,16 +36,28 @@ const version = packageJson.version;
 yargs(hideBin(process.argv))
   .version(version)
   .alias("v", "version")
-  .command(
+  .command<{
+    environment: "dev" | "prod";
+  }>(
     "build",
     "Build an nrg project",
-    () => {},
+    (yargs) => {
+      yargs.option("environment", {
+        alias: "e",
+        type: "string",
+        choices: ["dev", "prod"],
+        default: "prod",
+        description: "Build environment",
+      });
+    },
     async (argv) => {
       const { config } = await loadConfig();
+      config.build.environment = argv.environment;
       await build(config);
     }
   )
   .command<{
+    environment: "dev" | "prod";
     watch: boolean;
     debug: boolean;
     open: boolean;
@@ -54,6 +66,13 @@ yargs(hideBin(process.argv))
     "Start the development server",
     (yargs) => {
       yargs
+        .option("environment", {
+          alias: "e",
+          type: "string",
+          choices: ["dev", "prod"],
+          default: "dev",
+          description: "Build environment",
+        })
         .option("watch", {
           alias: "w",
           type: "boolean",
@@ -74,6 +93,7 @@ yargs(hideBin(process.argv))
       const { config, filepath } = await loadConfig();
       const { port, listener } = await startListener(config);
 
+      config.build.environment = argv.environment;
       config.dev.debug = argv.debug;
       config.dev.open = argv.open;
       config.dev.port = port;
