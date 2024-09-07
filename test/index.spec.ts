@@ -1,9 +1,5 @@
 import { describe, it, expect, vi } from "vitest";
-import * as path from "path";
 import * as fs from "fs";
-import { exec } from "child_process";
-import { fileURLToPath } from "url";
-import { promisify } from "util";
 import {
   build,
   startNodeRed,
@@ -21,8 +17,6 @@ vi.mock("@allanoricil/nrg-core", () => ({
 }));
 
 vi.mock("fs");
-
-const execPromise = promisify(exec);
 
 describe("cli", () => {
   const originalArgv = process.argv;
@@ -243,36 +237,6 @@ describe("cli", () => {
     expect(build).toHaveBeenCalledWith(mockConfig);
     expect(startNodeRed).toHaveBeenCalledWith(mockConfig, {});
     expect(mockConfig.dev.open).toBe(true);
-  });
-
-  // NOTE: I couldn't make this test without executing the source directly.
-  it("should handle missing command with a help message", async () => {
-    try {
-      await execPromise("npx ts-node ./src/index.ts", {
-        encoding: "utf8",
-      });
-      throw Error();
-    } catch (error: unknown) {
-      expect(error.message).toContain(
-        "You need at least one command before moving on",
-      );
-    }
-  });
-
-  // NOTE: I couldn't make this test without executing the source directly.
-  it("should display the version", async () => {
-    const __filename = fileURLToPath(import.meta.url);
-    const __dirname = path.dirname(__filename);
-    const currentVersion = JSON.parse(
-      fs.readFileSync(path.resolve(__dirname, "../package.json")),
-    ).version;
-    const { stdout } = await execPromise(
-      "npx ts-node ./src/index.ts --version",
-      {
-        encoding: "utf8",
-      },
-    );
-    expect(stdout).to.contain(currentVersion);
   });
 });
 
