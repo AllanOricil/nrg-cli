@@ -1,3 +1,7 @@
+.github
+.husky
 node_modules
 src
+test
 tsconfig.json
+vitest.config.js

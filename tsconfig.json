@@ -10,7 +10,8 @@
     "allowSyntheticDefaultImports": true,
     "esModuleInterop": true,
     "forceConsistentCasingInFileNames": true,
-    "sourceMap": false
+    "sourceMap": false,
+    "types": ["vitest/globals"]
   },
   "ts-node": { "esm": true },
   "include": ["src"],

@@ -24,15 +24,15 @@ interface PackageJson {
   scripts?: { [key: string]: string };
   dependencies?: { [key: string]: string };
   devDependencies?: { [key: string]: string };
-  [key: string]: any;
+  [key: string]: unknown;
 }
 
 const packageJsonPath = path.resolve(__dirname, "../package.json");
-const packageJson: PackageJson = JSON.parse(
-  fs.readFileSync(packageJsonPath, "utf-8")
-);
+const packageJsonString = fs.readFileSync(packageJsonPath, "utf-8");
+const packageJson: PackageJson = JSON.parse(packageJsonString);
 const version = packageJson.version;
 
+// eslint-disable-next-line @typescript-eslint/no-unused-expressions
 yargs(hideBin(process.argv))
   .version(version)
   .alias("v", "version")
@@ -54,7 +54,7 @@ yargs(hideBin(process.argv))
       const { config } = await loadConfig();
       config.build.environment = argv.environment;
       await build(config);
-    }
+    },
   )
   .command<{
     environment: "dev" | "prod";
@@ -104,7 +104,7 @@ yargs(hideBin(process.argv))
 
       await build(config);
       await startNodeRed(config, listener);
-    }
+    },
   )
   .demandCommand(1, "You need at least one command before moving on")
   .help()

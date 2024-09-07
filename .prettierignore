@@ -1,0 +1,9 @@
+.husky
+.npmrc
+.eslintignore
+.gitignore
+.npmignore
+templates
+dist
+node_modules
+package-lock.json
