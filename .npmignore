@@ -1,6 +1,13 @@
 .github
 .husky
+.eslintignore
+.prettierignore
+.releaserc.json
+commitlint.config.js
+eslint.config.js
 node_modules
+coverage
+logs
 src
 test
 tsconfig.json
