@@ -12,7 +12,7 @@ The `nrg build` command compiles and packages your Node-RED nodes or plugins, en
 nrg build
 ```
 
-Use this when you're ready to build your project for production. The default settings used to bundle your javascript can be found
+Use this command when you're ready to build your project for production. The default settings used to bundle your javascript can be found
 [here](https://github.com/AllanOricil/nrg/blob/main/defaults/nrg.json). You can override any of those properties for both `prod` and `dev` builds.
 
 ### `nrg dev`
@@ -23,7 +23,7 @@ The nrg dev command starts a development environment for your Node-RED project. 
 nrg dev
 ```
 
-Use this command to work interactively on your custom nodes or plugins, making development faster and smoother. As before mentioned before, the default settings used to bundle your javascript can be found [here](https://github.com/AllanOricil/nrg/blob/main/defaults/nrg.json). And again, you can override any of the properties used during in the `dev` build changing `build.dev.server` or `build.dev.client`.
+Use this command to work interactively on your custom nodes or plugins, making development faster and smoother. As mentioned before, the default settings used to bundle your javascript can be found [here](https://github.com/AllanOricil/nrg/blob/main/defaults/nrg.json), and you can override any of these properties changing `build.dev.server` or `build.dev.client`.
 
 In order to run a `prod` build locally, use the following command `nrg dev -o -e prod`.
 
