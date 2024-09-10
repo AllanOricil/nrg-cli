@@ -1,8 +1,7 @@
 {
   "name": "@allanoricil/nrg-cli",
-  "version": "0.0.0-beta.18",
+  "version": "1.0.0",
   "description": "A very simple CLI for building an nrg project",
-  "author": "allanoricil <allanoricilcos@outlook.com>",
   "license": "MIT",
   "publishConfig": {
     "access": "public"
@@ -16,6 +15,18 @@
     "node": ">=18",
     "npm": ">=10"
   },
+  "author": {
+    "name": "AllanOricil",
+    "email": "allanoricil@duck.com"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/AllanOricil/nrg-cli"
+  },
+  "bugs": {
+    "url": "https://github.com/AllanOricil/nrg-cli/issues"
+  },
+  "homepage": "https://github.com/AllanOricil/nrg-cli#readme",
   "scripts": {
     "build": "tsc",
     "release": "semantic-release",
@@ -30,7 +41,7 @@
     "prepublishOnly": "npm run build"
   },
   "dependencies": {
-    "@allanoricil/nrg-core": "0.0.0-beta.22",
+    "@allanoricil/nrg-core": "1.0.0",
     "yargs": "^17.7.2"
   },
   "devDependencies": {
