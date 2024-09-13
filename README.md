@@ -140,9 +140,7 @@ static settings(){
 }
 ```
 
-The `exampleSetting` attribute shown above will be accessible in the editor, and server, as `RED.settings.myNodeexampleSetting`. Node-RED automatically appends the Node's type in camelCase before the name of the setting.
-
-Read more about it in this Node-RED [doc](https://nodered.org/docs/creating-nodes/node-js#custom-node-settings).
+The `exampleSetting` attribute shown above will be accessible in the editor, and server, as `RED.settings.myNodeExampleSetting`, where `my-node` is the Node's type. Read more about it in this Node-RED [doc](https://nodered.org/docs/creating-nodes/node-js#custom-node-settings).
 
 #### `static credentials`
 
@@ -209,7 +207,7 @@ These are all the properties you can configure:
     }
   },
   "build": {
-    "environment": "prod", // it can be either prod or dev
+    "environment": "prod", // it can be either prod or dev. If absent, it defaults to prod.
     "server": {
       // global esbuild settings. Use it to override both prod and dev build settings
     },
@@ -289,7 +287,7 @@ Below is the bare minimum `package.json` configuration. Attention for the `node-
   },
   "dependencies": {},
   "devDependencies": {
-    "@allanoricil/nrg-cli": "^0.0.0-beta.17"
+    "@allanoricil/nrg-cli": "^1.0.1"
   }
 }
 ```
