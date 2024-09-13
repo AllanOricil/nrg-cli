@@ -169,12 +169,12 @@ this.context().get("key");
 this.context().set("key", value);
 
 // NOTE: Flow context
-this.flowContext().get("key");
-this.flowContext().set("key", value);
+this.flowContext.get("key");
+this.flowContext.set("key", value);
 
 // NOTE: Global context
-this.globalContext().get("key");
-this.globalContext().set("key", value);
+this.globalContext.get("key");
+this.globalContext.set("key", value);
 ```
 
 Read more aobut it in this Node-RED [doc](https://nodered.org/docs/creating-nodes/context).
