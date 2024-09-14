@@ -198,8 +198,8 @@ You can also choose to have an `nrg` object in the root of your `package.json`.
 
 These are all the properties you can configure:
 
-```json
-{
+```js
+module.exports = {
   "version": "0.0.0", // controls the schema version of the config file.
   "dev": {
     "watch": {
