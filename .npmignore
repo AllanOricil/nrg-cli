@@ -3,6 +3,7 @@
 .eslintignore
 .prettierignore
 .releaserc.json
+CHANGELOG.md
 commitlint.config.js
 eslint.config.js
 node_modules
