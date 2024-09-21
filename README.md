@@ -1,3 +1,13 @@
+<p align="center">
+  <img alt="nrg-icon" src="https://gist.githubusercontent.com/AllanOricil/84412df273de46b28c5d6945b391afd4/raw/00af546f5a8e36fb8ceee4a5ab7f6c693ba3c7b7/nrg-icon.svg" style="width: 200px"/>
+</p>
+<br/>
+<p align="center">
+  <a href="https://www.npmjs.com/package/@allanoricil/nrg-cli"><img src="https://img.shields.io/npm/v/@allanoricil/nrg-cli.svg" alt="npm package"></a>
+  <a href="https://github.com/AllanOricil/nrg-cli/actions/workflows/ci.yaml"><img src="https://github.com/AllanOricil/nrg-cli/actions/workflows/ci.yaml/badge.svg?branch=main" alt="build status"></a>
+</p>
+<br/>
+
 # nrg - Node-RED Generator
 
 **nrg** (pronounced "energy") is a CLI tool designed to empower Node-RED developers with speed and efficiency. The name **nrg** stands for **Node-RED Generator**, but it's pronounced like "energy" to symbolize the power and momentum it brings to your workflow. Just as energy drives systems forward, **nrg** accelerates your development process, helping you quickly generate, build, and manage Node-RED nodes and plugins. Whether you're building simple automations or complex integrations, **nrg** ensures that you can focus your energy on writing meaningful code, while it takes care of the setup and scaffolding.
@@ -200,41 +210,41 @@ These are all the properties you can configure:
 
 ```js
 module.exports = {
-  "version": "0.0.0", // controls the schema version of the config file.
-  "dev": {
-    "watch": {
-      "paths": [] // additional paths that will trigger a rebuild
-    }
+  version: "0.0.0", // controls the schema version of the config file.
+  dev: {
+    watch: {
+      paths: [], // additional paths that will trigger a rebuild
+    },
   },
-  "build": {
-    "environment": "prod", // it can be either prod or dev. If absent, it defaults to prod.
-    "server": {
+  build: {
+    environment: "prod", // it can be either prod or dev. If absent, it defaults to prod.
+    server: {
       // global esbuild settings. Use it to override both prod and dev build settings
     },
-    "client": {
+    client: {
       // global esbuild settings. Use it to override both prod and dev build settings
     },
-    "dev": {
+    dev: {
       // dev build settings
-      "server": {
+      server: {
         // esbuild settings used to build the server side javascript of your node
       },
-      "client": {
+      client: {
         // esbuild settings used to build the client side javascript of your node
-      }
+      },
     },
-    "prod": {
+    prod: {
       // prod build settings
-      "server": {
+      server: {
         // esbuild settings used to build the server side javascript of your node
       },
-      "client": {
+      client: {
         // esbuild settings used to build the client side javascript of your node
-      }
-    }
+      },
+    },
   },
-  "nodeRed": {} // Node-RED settings properties that are used when node-red is started
-}
+  nodeRed: {}, // Node-RED settings properties that are used when node-red is started
+};
 ```
 
 The javascript is processed by `esbuild`. You can use any `esbuild` settings, including plugins. To find a complete list of properties `esbuild` has, read their [doc](https://esbuild.github.io/api/#general-options). To use a plugin, make sure your config file is either `.js` or `.cjs`, and that it exports seetings as shown below. For example, the following `nrg.config.js` is using the `esbuild-vue` plugin to build vue components.
