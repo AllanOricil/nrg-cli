@@ -47,7 +47,7 @@
   },
   "dependencies": {
     "@allanoricil/nrg-core": "1.2.0-beta.0",
-    "@allanoricil/nrg-generator": "0.0.0-beta.1",
+    "@allanoricil/nrg-generator": "0.0.0-beta.2",
     "chalk": "^5.3.0",
     "global-modules": "^2.0.0",
     "node-plop": "^0.32.0",
