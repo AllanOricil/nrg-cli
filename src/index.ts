@@ -14,12 +14,19 @@ import { getPlopfileFilepath, getCLIInfo } from "./utils";
 
 const version = getCLIInfo();
 
-const y = yargs(hideBin(process.argv)).version(version).alias("v", "version");
+// NOTE: version is disabled to avoid processing -v | --version flags during the first parse call, which would cause the version output to be displayed twice
+// NOTE: help is disabled to avoid processing the default --help flag during the first parse call, which would cause the help output to be displayed twice
+// NOTE: exitProcess is disabled because we don't want to kill the process after calling the first parse
+const y = yargs(hideBin(process.argv))
+  .version(false)
+  .help(false)
+  .exitProcess(false);
 
 // NOTE: it is parsed here to retrieve the subcommand information, which is used to change the create command
 const argv = await y.parse();
 
-await y
+y.version(version)
+  .alias("v", "version")
   .command<{
     environment: "dev" | "prod";
   }>(
@@ -236,5 +243,6 @@ await y
   )
   .demandCommand(1, "You need at least one command before moving on")
   .help()
-  .alias("h", "help")
-  .parse();
+  .alias("h", "help");
+
+y.parse();
