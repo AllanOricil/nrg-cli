@@ -1,5 +1,6 @@
 #!/usr/bin/env node
-
+import * as path from "path";
+import * as fs from "fs";
 import yargs from "yargs/yargs";
 import { hideBin } from "yargs/helpers";
 import {
@@ -9,19 +10,13 @@ import {
   startListener,
   loadConfig,
 } from "@allanoricil/nrg-core";
-import * as path from "path";
-import * as fs from "fs";
 import { fileURLToPath } from "url";
 import nodePlop from "node-plop";
 import chalk from "chalk";
+import { getPlopfileFilepath } from "./utils";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
-
-const plopfilePath = path.resolve(
-  __dirname,
-  "../node_modules/@allanoricil/nrg-generator/plopfile.js",
-);
 
 interface PackageJson {
   name: string;
@@ -188,7 +183,7 @@ yargs(hideBin(process.argv))
         nodeInputs,
         nodeOutputs,
       } = argv;
-
+      const plopfilePath = getPlopfileFilepath();
       const plop = await nodePlop(plopfilePath);
       if (!type) {
         const generator = plop.getGenerator("create");
