@@ -1,9 +1,13 @@
-const fs = require('fs');
-const path = require('path');
-const chalk = require('chalk');
+import * as fs from "fs";
+import * as path from "path";
+import chalk from "chalk";
+import { fileURLToPath } from "url";
 
-const packageJsonPath = path.join(__dirname, 'package.json');
-const packageJson = JSON.parse(fs.readFileSync(packageJsonPath, 'utf8'));
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+
+const packageJsonPath = path.join(__dirname, "../package.json");
+const packageJson = JSON.parse(fs.readFileSync(packageJsonPath, "utf8"));
 const version = packageJson.version;
 
 const logo = `
@@ -42,7 +46,7 @@ const logo = `
                           ########                          
 `;
 
-const authorName = 'Allan Oricil';
+const authorName = "Allan Oricil";
 const thankYouMessage = `
 Thank you for installing the nrg CLI! 🚀
 
@@ -53,8 +57,7 @@ You are now ready to power up your projects with ease. For help and guidance, ru
 Happy coding! 🎉
 `;
 
-const message = `${chalk.bold(authorName)}\n${chalk.green(`version ${version}`)}\n${thankYouMessage}`;
-const padding = ' '.repeat((logo.split('\n')[0].length - message.split('\n').map(line => line.length).reduce((a, b) => Math.max(a, b), 0)) / 2);
+const message = `Author:  ${chalk.bold(authorName)}\nVersion: ${chalk.yellow(`${version}`)}\n${chalk.green(thankYouMessage)}`;
 
-console.log(logo);
-console.log(`${padding}${message}\n`);
+console.log(chalk.red(logo));
+console.log(`${message}\n`);
