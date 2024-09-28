@@ -37,6 +37,7 @@
     "lint:fix": "eslint --fix '**/*.ts'",
     "format": "prettier '**/*.{json,ts}'",
     "format:fix": "prettier --write '**/*.{json,ts}'",
+    "postinstall": "node postinstall.cjs",
     "prepare": "husky",
     "prepublishOnly": "npm run build"
   },
