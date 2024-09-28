@@ -7,10 +7,11 @@ import globalModules from "global-modules";
 
 function getPlopfileFilepath(): string {
   const packageDirectory = packageDirectorySync();
+
   return path.resolve(
     packageDirectory
       ? path.join(packageDirectory, "node_modules")
-      : globalModules,
+      : path.join(globalModules, "@allanoricil/nrg-cli/node_modules"),
     "@allanoricil/nrg-generator/plopfile.js",
   );
 }
