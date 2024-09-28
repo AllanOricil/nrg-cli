@@ -341,14 +341,20 @@ To get started with nrg, install it as a dev dependency on your `nrg` project, u
 npm install @allanoricil/nrg-cli -D
 ```
 
+You can also install it globally, using the following command
+
+```bash
+npm install @allanoricil/nrg-cli -g
+```
+
 ## Usage
 
 ```bash
 nrg build
 nrg dev --watch --debug --open
+nrg create -n my-nrg-project
+nrg create node -n my-node
 ```
-
-Stay tuned for the upcoming nrg create commands to make project setup even faster.
 
 ## Contributing
 
