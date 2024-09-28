@@ -1,6 +1,4 @@
 #!/usr/bin/env node
-import * as path from "path";
-import * as fs from "fs";
 import yargs from "yargs/yargs";
 import { hideBin } from "yargs/helpers";
 import {
@@ -10,29 +8,11 @@ import {
   startListener,
   loadConfig,
 } from "@allanoricil/nrg-core";
-import { fileURLToPath } from "url";
 import nodePlop from "node-plop";
 import chalk from "chalk";
-import { getPlopfileFilepath } from "./utils";
+import { getPlopfileFilepath, getCLIInfo } from "./utils";
 
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
-
-interface PackageJson {
-  name: string;
-  version: string;
-  description?: string;
-  main?: string;
-  scripts?: { [key: string]: string };
-  dependencies?: { [key: string]: string };
-  devDependencies?: { [key: string]: string };
-  [key: string]: unknown;
-}
-
-const packageJsonPath = path.resolve(__dirname, "../package.json");
-const packageJsonString = fs.readFileSync(packageJsonPath, "utf-8");
-const packageJson: PackageJson = JSON.parse(packageJsonString);
-const version = packageJson.version;
+const version = getCLIInfo();
 
 // eslint-disable-next-line @typescript-eslint/no-unused-expressions
 yargs(hideBin(process.argv))
@@ -118,7 +98,7 @@ yargs(hideBin(process.argv))
     nodeOutputs: "number";
   }>(
     "create [type]",
-    "Create a new nrg project or node.",
+    "Create a new nrg project or node",
     (yargs) => {
       yargs
         .positional("type", {
