@@ -37,7 +37,7 @@
     "lint:fix": "eslint --fix '**/*.ts'",
     "format": "prettier '**/*.{json,ts}'",
     "format:fix": "prettier --write '**/*.{json,ts}'",
-    "postinstall": "node dist/postinstall.js",
+    "postinstall": "./dist/postinstall.js",
     "prepare": "husky",
     "prepublishOnly": "npm run build"
   },
