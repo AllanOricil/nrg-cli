@@ -14,12 +14,13 @@ import { getPlopfileFilepath, getCLIInfo } from "./utils";
 
 const version = getCLIInfo();
 
-const parsed = await yargs(hideBin(process.argv)).parse();
+const parsed = await yargs(hideBin(process.argv))
+  .version(version)
+  .alias("v", "version")
+  .parse();
 
 // eslint-disable-next-line @typescript-eslint/no-unused-expressions
 yargs(hideBin(process.argv))
-  .version(version)
-  .alias("v", "version")
   .command<{
     environment: "dev" | "prod";
   }>(
