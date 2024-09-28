@@ -356,6 +356,12 @@ nrg create -n my-nrg-project
 nrg create node -n my-node
 ```
 
+For more details about `nrg` commands, run 
+
+```bash
+nrg --help
+```
+
 ## Contributing
 
 I welcome contributions! If you'd like to help improve nrg, feel free to open issues or submit pull requests. Your feedback is appreciated.
