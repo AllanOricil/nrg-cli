@@ -37,6 +37,23 @@ Use this command to work interactively on your custom nodes or plugins, making d
 
 In order to run a `prod` build locally, use the following command `nrg dev -o -e prod`.
 
+
+### `nrg create`
+
+Use this command to create an nrg project with ease.
+
+```bash
+nrg create -n <project-name>
+```
+
+### `nrg create node`
+
+Use this command to create node-red nodes for an nrg project.
+
+```bash
+nrg create node -n <node-name>
+```
+
 ## Base Project Directory Structure
 
 ```bash
@@ -307,22 +324,6 @@ The cli must be added as a dev dependency because it has the following peer depe
 ## Upcomming Features
 
 Here’s a sneak peek at what's coming, once the aforementioned commands are stable.
-
-### `nrg create`
-
-This will be a powerful scaffold generator for Node-RED projects. You’ll soon be able to quickly set up new projects with ease.
-
-```bash
-nrg create <project-name>
-```
-
-### `nrg create node`
-
-Generate boilerplate code for new Node-RED nodes, with customizable options like inputs, outputs, and categories.
-
-```bash
-nrg create node <node-name>
-```
 
 ### `nrg create plugin`
 
