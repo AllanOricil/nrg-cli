@@ -14,6 +14,8 @@ import { getPlopfileFilepath, getCLIInfo } from "./utils";
 
 const version = getCLIInfo();
 
+const parsed = await yargs(hideBin(process.argv)).parse();
+
 // eslint-disable-next-line @typescript-eslint/no-unused-expressions
 yargs(hideBin(process.argv))
   .version(version)
@@ -89,7 +91,7 @@ yargs(hideBin(process.argv))
     },
   )
   .command<{
-    type: "" | "node";
+    subcommand: "" | "node";
     projectName: "string";
     nodeName: "string";
     nodeCategory: "string";
@@ -97,20 +99,25 @@ yargs(hideBin(process.argv))
     nodeInputs: "number";
     nodeOutputs: "number";
   }>(
-    "create [type]",
+    "create [subcommand]",
     "Create a new nrg project or node",
-    (yargs) => {
-      yargs
-        .positional("type", {
+    async (yargs) => {
+      const subcommand = parsed._[1];
+
+      const builder = yargs
+        .positional("subcommand", {
           describe:
-            "Specify the type of item to create. If left empty, a project will be created.",
+            "Specify what you want to create. If left empty, a project will be created",
           choices: ["node"],
         })
         .option("project-name", {
+          alias: "n",
           type: "string",
           description: "What would you like to name your project?",
+          hidden: subcommand === "node",
         })
         .option("node-name", {
+          alias: subcommand === "node" ? "n" : undefined,
           type: "string",
           description: "What would you like to name your node?",
         })
@@ -131,31 +138,44 @@ yargs(hideBin(process.argv))
           description: "How many outputs should your node have? (e.g. 1)",
         })
         .check((argv) => {
-          const type = argv.type;
-          if (type === "node" && !argv["node-name"]) {
+          const subcommand = argv.subcommand;
+          if (subcommand === "node" && !argv["node-name"]) {
             throw new Error(
-              'The --node-name option is required when type is "node".',
+              'The --node-name option is required when subcommand is "node".',
             );
           }
-          if (type !== "node" && !argv["project-name"]) {
+          if (subcommand !== "node" && !argv["project-name"]) {
             throw new Error(
-              "The --project-name option is required when type is undefined",
+              "The --project-name option is required when subcommand is undefined",
             );
           }
           return true;
-        })
-        .example(
-          "nrg create --project-name nrg-project",
-          "Creates a new project.",
-        )
-        .example(
-          "nrg create node --node-name node-1",
-          "Creates a new node named node-1.",
-        );
+        });
+
+      if (subcommand === "node") {
+        builder
+          .example("nrg create node --node-name node-1", "Creates a new node")
+          .example(
+            "nrg create node -n node-1 --node-category my-category",
+            "Creates a new node with name an category",
+          );
+      } else {
+        builder
+          .example(
+            "nrg create --project-name nrg-project",
+            "Creates a new project called nrg-project",
+          )
+          .example(
+            "nrg create -n nrg-project --node-name node-1",
+            "Creates a new project called nrg-project and a node",
+          );
+      }
+
+      return builder;
     },
     async (argv) => {
       const {
-        type,
+        subcommand,
         projectName,
         nodeName,
         nodeCategory,
@@ -165,7 +185,7 @@ yargs(hideBin(process.argv))
       } = argv;
       const plopfilePath = getPlopfileFilepath();
       const plop = await nodePlop(plopfilePath);
-      if (!type) {
+      if (!subcommand) {
         const generator = plop.getGenerator("create");
         const cliAnswers = [
           projectName || "_",
@@ -196,7 +216,7 @@ yargs(hideBin(process.argv))
         console.log(
           chalk.green(`\nHappy coding! If you need help, just ask! 🚀\n`),
         );
-      } else if (type === "node") {
+      } else if (subcommand === "node") {
         const generator = plop.getGenerator("create:node");
         const cliAnswers = [
           nodeName || "_",
