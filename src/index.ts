@@ -14,13 +14,12 @@ import { getPlopfileFilepath, getCLIInfo } from "./utils";
 
 const version = getCLIInfo();
 
-const parsed = await yargs(hideBin(process.argv))
-  .version(version)
-  .alias("v", "version")
-  .parse();
+const y = yargs(hideBin(process.argv)).version(version).alias("v", "version");
 
-// eslint-disable-next-line @typescript-eslint/no-unused-expressions
-yargs(hideBin(process.argv))
+// NOTE: it is parsed here to retrieve the subcommand information, which is used to change the create command
+const argv = await y.parse();
+
+await y
   .command<{
     environment: "dev" | "prod";
   }>(
@@ -102,8 +101,8 @@ yargs(hideBin(process.argv))
   }>(
     "create [subcommand]",
     "Create a new nrg project or node",
-    async (yargs) => {
-      const subcommand = parsed._[1];
+    (yargs) => {
+      const subcommand = argv._[1];
 
       const builder = yargs
         .positional("subcommand", {
@@ -168,7 +167,7 @@ yargs(hideBin(process.argv))
           )
           .example(
             "nrg create -n nrg-project --node-name node-1",
-            "Creates a new project called nrg-project and a node",
+            "Creates a new project and a node",
           );
       }
 
@@ -237,4 +236,5 @@ yargs(hideBin(process.argv))
   )
   .demandCommand(1, "You need at least one command before moving on")
   .help()
-  .alias("h", "help").argv;
+  .alias("h", "help")
+  .parse();
