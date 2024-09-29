@@ -33,3 +33,168 @@ jobs:
 
       - name: Build
         run: npm run build
+
+      - name: Upload build artifacts
+        uses: actions/upload-artifact@v4.4.0
+        with:
+          name: build-artifacts
+          path: |
+            dist
+
+  integration_test:
+    name: Integration Tests - Ubuntu/MacOS
+    needs: build
+    runs-on: ${{ matrix.os }}
+    env:
+      CI: true
+    strategy:
+      matrix:
+        os: [ubuntu-latest, macos-latest]
+        node-version: [18.x, 20.x, 22.x]
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4.1.1
+
+      - name: Download build artifacts
+        uses: actions/download-artifact@v4.1.8
+        with:
+          name: build-artifacts
+          path: |
+            dist
+
+      - name: Setup Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v4.0.1
+
+      - name: Install CLI dependencies
+        env:
+          HUSKY: 0
+        run: |
+          ls -la
+          rm package-lock.json
+          npm pkg delete scripts.prepare
+          npm install --omit=dev --ignore-scripts
+          npm install -g . --omit=dev --ignore-scripts
+
+      - name: Run tests
+        run: |
+          nrg -h
+          nrg --help
+          nrg -v
+          nrg --version
+          nrg create -h
+          nrg create --help
+          nrg create node -h
+          nrg create node --help
+          nrg create -n test-project-1 --node-name node-1 --node-category custom-nodes --node-color "#FFFFFF" --node-inputs 1 --node-outputs 1
+
+          cd test-project-1
+          npm install
+          npm ls @allanoricil/node-red-node
+          npm ls @allanoricil/nrg-core
+          npm ls @allanoricil/nrg-generator
+          nrg create node -n node-2 --node-category custom-nodes --node-color "#FFFFFF" --node-inputs 1 --node-outputs 1
+          ./node_modules/.bin/nrg -h
+          ./node_modules/.bin/nrg --help
+          ./node_modules/.bin/nrg -v
+          ./node_modules/.bin/nrg --version
+          ./node_modules/.bin/nrg create -h
+          ./node_modules/.bin/nrg create --help
+          ./node_modules/.bin/nrg create node -h
+          ./node_modules/.bin/nrg create node --help
+          ./node_modules/.bin/nrg create node -n node-3 --node-category custom-nodes --node-color "#FFFFFF" --node-inputs 1 --node-outputs 1
+          ./node_modules/.bin/nrg create node --node-name node-4 --node-category custom-nodes --node-color "#FFFFFF" --node-inputs 1 --node-outputs 1
+          nrg create node -n node-5 --node-category custom-nodes --node-color "#FFFFFF" --node-inputs 1 --node-outputs 1
+          nrg create node --node-name node-6 --node-category custom-nodes --node-color "#FFFFFF" --node-inputs 1 --node-outputs 1
+
+          npm run build
+          npm run build:dev
+          npm run start & echo $! > nrg.pid
+          sleep 20
+          kill $(cat nrg.pid)
+          rm nrg.pid
+          
+          nrg build
+          nrg build -e dev
+          nrg dev -o & echo $! > nrg.pid
+          sleep 20
+          kill $(cat nrg.pid)
+          rm nrg.pid
+
+  # TODO: dedup this since it is possible to run in bash
+  integration_test_windows:
+    name: Integration Tests - Windows
+    needs: build
+    runs-on: windows-latest
+    env:
+      CI: true
+    strategy:
+      matrix:
+        node-version: [18.x, 20.x, 22.x]
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4.1.1
+
+      - name: Download build artifacts
+        uses: actions/download-artifact@v4.1.8
+        with:
+          name: build-artifacts
+          path: |
+            dist
+
+      - name: Setup Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v4.0.1
+
+      - name: Install CLI dependencies
+        shell: bash
+        env:
+          HUSKY: 0
+        run: |
+          ls -la
+          rm package-lock.json
+          npm pkg delete scripts.prepare
+          npm install --omit=dev --ignore-scripts
+          npm install -g . --omit=dev --ignore-scripts
+
+      - name: Run tests
+        shell: bash
+        run: |
+          nrg -h
+          nrg --help
+          nrg -v
+          nrg --version
+          nrg create -h
+          nrg create --help
+          nrg create node -h
+          nrg create node --help
+          nrg create -n test-project-1 --node-name node-1 --node-category custom-nodes --node-color "#FFFFFF" --node-inputs 1 --node-outputs 1
+
+          cd test-project-1
+          npm install
+          npm ls @allanoricil/node-red-node
+          npm ls @allanoricil/nrg-core
+          npm ls @allanoricil/nrg-generator
+          nrg create node -n node-2 --node-category custom-nodes --node-color "#FFFFFF" --node-inputs 1 --node-outputs 1
+          ./node_modules/.bin/nrg -h
+          ./node_modules/.bin/nrg --help
+          ./node_modules/.bin/nrg -v
+          ./node_modules/.bin/nrg --version
+          ./node_modules/.bin/nrg create -h
+          ./node_modules/.bin/nrg create --help
+          ./node_modules/.bin/nrg create node -h
+          ./node_modules/.bin/nrg create node --help
+          ./node_modules/.bin/nrg create node -n node-3 --node-category custom-nodes --node-color "#FFFFFF" --node-inputs 1 --node-outputs 1
+          ./node_modules/.bin/nrg create node --node-name node-4 --node-category custom-nodes --node-color "#FFFFFF" --node-inputs 1 --node-outputs 1
+          nrg create node -n node-5 --node-category custom-nodes --node-color "#FFFFFF" --node-inputs 1 --node-outputs 1
+          nrg create node --node-name node-6 --node-category custom-nodes --node-color "#FFFFFF" --node-inputs 1 --node-outputs 1
+          
+          nrg build
+          nrg build -e dev
+          
+          # TODO: uncomment this once @allanoricil/nrg-cli >= 1.2.2
+          # ./node_modules/.bin/nrg build
+          # ./node_modules/.bin/nrg build -e dev
+
+          # TODO: start node-red in windows using global and local dev dependency
+          
