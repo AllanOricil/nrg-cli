@@ -1,6 +1,6 @@
 {
   "name": "@allanoricil/nrg-cli",
-  "version": "1.2.2",
+  "version": "1.2.3",
   "description": "A very simple CLI for building an nrg project",
   "license": "MIT",
   "publishConfig": {

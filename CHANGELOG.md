@@ -1,3 +1,11 @@
+## [1.2.3](https://github.com/AllanOricil/nrg-cli/compare/v1.2.2...v1.2.3) (2024-09-29)
+
+
+### Bug Fixes
+
+* basedir=/bin SyntaxError: missing ) after argument list ([6d9ed41](https://github.com/AllanOricil/nrg-cli/commit/6d9ed414bf4737952893bae1df90bda008e7c7ba))
+* **deps:** add missing dependency pkg-dir@v8.0.0 for postinstall ([56851ae](https://github.com/AllanOricil/nrg-cli/commit/56851aeff05701c93bea7e3b9647281d45d6cdc0))
+
 ## [1.2.2](https://github.com/AllanOricil/nrg-cli/compare/v1.2.1...v1.2.2) (2024-09-29)
 
 
