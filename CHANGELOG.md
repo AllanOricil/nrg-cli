@@ -1,3 +1,10 @@
+## [1.2.2](https://github.com/AllanOricil/nrg-cli/compare/v1.2.1...v1.2.2) (2024-09-29)
+
+
+### Bug Fixes
+
+* fix build on windows ([c96661f](https://github.com/AllanOricil/nrg-cli/commit/c96661f899af399e9b27b86684011a3c8c535634))
+
 # [1.2.0](https://github.com/AllanOricil/nrg-cli/compare/v1.1.0...v1.2.0) (2024-09-28)
 
 
