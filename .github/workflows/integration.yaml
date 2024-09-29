@@ -1,0 +1,135 @@
+name: Integration Tests
+on:
+  workflow_call:
+    inputs:
+      os:
+        description: OS to use during integration tests
+        required: true
+        type: string
+
+jobs:
+  build:
+    name: Build
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4.1.1
+
+      - name: Setup Node
+        uses: actions/setup-node@v4.0.1
+        with:
+          node-version: 20
+          cache: npm
+
+      - name: Install Dependencies
+        run: npm ci --ignore-scripts
+
+      - name: Format
+        run: npm run format
+
+      - name: Lint
+        run: npm run lint
+
+      - name: Test
+        run: npm run test
+
+      - name: Build
+        run: npm run build
+
+      - name: Upload build artifacts
+        uses: actions/upload-artifact@v4.4.0
+        with:
+          name: build-artifacts
+          path: |
+            dist
+
+  integration_test:
+    name: Integration Tests
+    needs: build
+    runs-on: ${{ inputs.os }}
+    env:
+      CI: true
+    strategy:
+      matrix:
+        node-version: [18.x, 20.x, 22.x]
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4.1.1
+
+      - name: Download build artifacts
+        uses: actions/download-artifact@v4.1.8
+        with:
+          name: build-artifacts
+          path: |
+            dist
+
+      - name: Setup Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v4.0.1
+
+      - name: Install CLI dependencies
+        shell: bash
+        env:
+          HUSKY: 0
+        run: |
+          ls -la
+          rm package-lock.json
+          npm pkg delete scripts.prepare
+          npm install --omit=dev --ignore-scripts
+          npm install -g . --omit=dev --ignore-scripts
+
+      - name: Run tests
+        shell: bash
+        run: |
+          nrg -h
+          nrg --help
+          nrg -v
+          nrg --version
+          nrg create -h
+          nrg create --help
+          nrg create node -h
+          nrg create node --help
+          nrg create -n test-project-1 --node-name node-1 --node-category custom-nodes --node-color "#FFFFFF" --node-inputs 1 --node-outputs 1
+
+          cd test-project-1
+          npm install
+          npm ls @allanoricil/node-red-node
+          npm ls @allanoricil/nrg-core
+          npm ls @allanoricil/nrg-generator
+          nrg create node -n node-2 --node-category custom-nodes --node-color "#FFFFFF" --node-inputs 1 --node-outputs 1
+          ./node_modules/.bin/nrg -h
+          ./node_modules/.bin/nrg --help
+          ./node_modules/.bin/nrg -v
+          ./node_modules/.bin/nrg --version
+          ./node_modules/.bin/nrg create -h
+          ./node_modules/.bin/nrg create --help
+          ./node_modules/.bin/nrg create node -h
+          ./node_modules/.bin/nrg create node --help
+          ./node_modules/.bin/nrg create node -n node-3 --node-category custom-nodes --node-color "#FFFFFF" --node-inputs 1 --node-outputs 1
+          ./node_modules/.bin/nrg create node --node-name node-4 --node-category custom-nodes --node-color "#FFFFFF" --node-inputs 1 --node-outputs 1
+          nrg create node -n node-5 --node-category custom-nodes --node-color "#FFFFFF" --node-inputs 1 --node-outputs 1
+          nrg create node --node-name node-6 --node-category custom-nodes --node-color "#FFFFFF" --node-inputs 1 --node-outputs 1
+
+          npm run build
+          npm run build:dev
+          npm run start & echo $! > nrg.pid
+          sleep 20
+          kill $(cat nrg.pid)
+          rm nrg.pid
+
+          nrg build
+          nrg build -e dev
+          nrg dev -o & echo $! > nrg.pid
+          sleep 20
+          kill $(cat nrg.pid)
+          rm nrg.pid
+
+          sleep 30
+
+      - name: Upload nrg logs
+        uses: actions/upload-artifact@v4.4.0
+        with:
+          name: nrg-logs-${{ inputs.os }}-${{ matrix.node-version }}
+          path: |
+            .nrg/nrg.log

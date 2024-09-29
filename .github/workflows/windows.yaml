@@ -1,0 +1,10 @@
+name: Windows
+on:
+  workflow_dispatch:
+
+jobs:
+  integration-tests:
+    name: Windows
+    uses: ./.github/workflows/integration.yaml
+    with:
+      os: windows-latest

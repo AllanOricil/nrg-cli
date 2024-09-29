@@ -1,0 +1,10 @@
+name: MacOS
+on:
+  workflow_dispatch:
+
+jobs:
+  integration-tests:
+    name: MacOS
+    uses: ./.github/workflows/integration.yaml
+    with:
+      os: macos-latest

@@ -1,0 +1,10 @@
+name: Ubuntu
+on:
+  workflow_dispatch:
+
+jobs:
+  integration-tests:
+    name: Ubuntu
+    uses: ./.github/workflows/integration.yaml
+    with:
+      os: ubuntu-latest

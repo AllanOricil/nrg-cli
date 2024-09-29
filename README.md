@@ -5,6 +5,9 @@
 <p align="center">
   <a href="https://www.npmjs.com/package/@allanoricil/nrg-cli"><img src="https://img.shields.io/npm/v/@allanoricil/nrg-cli.svg" alt="npm package"></a>
   <a href="https://github.com/AllanOricil/nrg-cli/actions/workflows/ci.yaml"><img src="https://github.com/AllanOricil/nrg-cli/actions/workflows/ci.yaml/badge.svg?branch=main" alt="build status"></a>
+  <a href="https://github.com/AllanOricil/nrg-cli/actions/workflows/windows.yaml"><img src="https://github.com/AllanOricil/nrg-cli/actions/workflows/windows.yaml/badge.svg?branch=main" alt="windows integration tests status"></a>
+  <a href="https://github.com/AllanOricil/nrg-cli/actions/workflows/ubuntu.yaml"><img src="https://github.com/AllanOricil/nrg-cli/actions/workflows/ubuntu.yaml/badge.svg?branch=main" alt="ubuntu integration tests status"></a>
+  <a href="https://github.com/AllanOricil/nrg-cli/actions/workflows/macos.yaml"><img src="https://github.com/AllanOricil/nrg-cli/actions/workflows/macos.yaml/badge.svg?branch=main" alt="macos integration tests status"></a>
 </p>
 <br/>
 
@@ -36,7 +39,6 @@ nrg dev
 Use this command to work interactively on your custom nodes or plugins, making development faster and smoother. As mentioned before, the default settings used to bundle your javascript can be found [here](https://github.com/AllanOricil/nrg/blob/main/defaults/nrg.json), and you can override any of these properties changing `build.dev.server` or `build.dev.client`.
 
 In order to run a `prod` build locally, use the following command `nrg dev -o -e prod`.
-
 
 ### `nrg create`
 
@@ -356,7 +358,7 @@ nrg create -n my-nrg-project
 nrg create node -n my-node
 ```
 
-For more details about `nrg` commands, run 
+For more details about `nrg` commands, run
 
 ```bash
 nrg --help
