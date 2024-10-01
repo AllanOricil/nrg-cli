@@ -371,3 +371,14 @@ I welcome contributions! If you'd like to help improve nrg, feel free to open is
 ## License
 
 This project is licensed under the [MIT License](https://github.com/AllanOricil/nrg-cli/blob/main/LICENSE).
+
+## Become a Sponsor
+
+If this CLI has made your life easier, consider supporting its development by clicking the button below.
+
+<a href="https://www.buymeacoffee.com/allanoricil" target="_blank">
+  <img 
+      src="https://cdn.buymeacoffee.com/buttons/v2/default-yellow.png" 
+      alt="Buy Me A Coffee" 
+      style="width: 217px;" />
+</a>
