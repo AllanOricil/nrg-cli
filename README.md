@@ -342,6 +342,14 @@ For more complex use cases, this command will generate a plugin structure for No
 nrg create plugin <plugin-name>
 ```
 
+### `nrg create node --type widget`
+
+This command will generate a node for dashboard 2.0.
+
+```bash
+nrg create node --type widget <node-name>
+```
+
 ## ⬇️ Installation
 
 To get started with nrg, install it as a dev dependency on your `nrg` project, using npm:
