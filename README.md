@@ -11,11 +11,11 @@
 </p>
 <br/>
 
-# nrg - Node-RED Generator
+# ⚡️ nrg - Node-RED Generator
 
 **nrg** (pronounced "energy") is a CLI tool designed to empower Node-RED developers with speed and efficiency. The name **nrg** stands for **Node-RED Generator**, but it's pronounced like "energy" to symbolize the power and momentum it brings to your workflow. Just as energy drives systems forward, **nrg** accelerates your development process, helping you quickly generate, build, and manage Node-RED nodes and plugins. Whether you're building simple automations or complex integrations, **nrg** ensures that you can focus your energy on writing meaningful code, while it takes care of the setup and scaffolding.
 
-## Current Features
+## ✨ Commands
 
 ### `nrg build`
 
@@ -56,7 +56,13 @@ Use this command to create node-red nodes for an nrg project.
 nrg create node -n <node-name>
 ```
 
-## Base Project Directory Structure
+For more details about `nrg` commands, run
+
+```bash
+nrg --help
+```
+
+## 🗂️ Base Project Directory Structure
 
 ```bash
 my-custom-nodes/
@@ -323,7 +329,7 @@ Below is the bare minimum `package.json` configuration. Attention for the `node-
 
 The cli must be added as a dev dependency because it has the following peer dependencies `@allanoricil/node-red-node` and `node-red` , which must be available in the working directory, inside the `node_modules` directory, at the moment of the build.
 
-## Upcomming Features
+## 🔮 Upcomming Features
 
 Here’s a sneak peek at what's coming, once the aforementioned commands are stable.
 
@@ -335,7 +341,7 @@ For more complex use cases, this command will generate a plugin structure for No
 nrg create plugin <plugin-name>
 ```
 
-## Installation
+## ⬇️ Installation
 
 To get started with nrg, install it as a dev dependency on your `nrg` project, using npm:
 
@@ -349,30 +355,15 @@ You can also install it globally, using the following command
 npm install @allanoricil/nrg-cli -g
 ```
 
-## Usage
-
-```bash
-nrg build
-nrg dev --watch --debug --open
-nrg create -n my-nrg-project
-nrg create node -n my-node
-```
-
-For more details about `nrg` commands, run
-
-```bash
-nrg --help
-```
-
-## Contributing
+## 🤝 Contributing
 
 I welcome contributions! If you'd like to help improve nrg, feel free to open issues or submit pull requests. Your feedback is appreciated.
 
-## License
+## 📜 License
 
 This project is licensed under the [MIT License](https://github.com/AllanOricil/nrg-cli/blob/main/LICENSE).
 
-## Become a Sponsor
+## 💖 Become a Sponsor
 
 If this CLI has made your life easier, consider supporting its development by clicking the button below.
 
