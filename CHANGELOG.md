@@ -1,3 +1,10 @@
+## [1.2.4](https://github.com/AllanOricil/nrg-cli/compare/v1.2.3...v1.2.4) (2024-10-01)
+
+
+### Bug Fixes
+
+* **vulnerability:** kangax html-minifier REDoS vulnerability ([1378192](https://github.com/AllanOricil/nrg-cli/commit/13781925b63afc1f7c6362dce5bb33859d7dccf1))
+
 ## [1.2.3](https://github.com/AllanOricil/nrg-cli/compare/v1.2.2...v1.2.3) (2024-09-29)
 
 
