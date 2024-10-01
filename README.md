@@ -17,7 +17,7 @@
 
 ## ✨ Commands
 
-### `nrg build`
+### ⬛ `nrg build`
 
 The `nrg build` command compiles and packages your Node-RED nodes or plugins, ensuring everything is bundled and ready for deployment.
 
@@ -28,7 +28,7 @@ nrg build
 Use this command when you're ready to build your project for production. The default settings used to bundle your javascript can be found
 [here](https://github.com/AllanOricil/nrg/blob/main/defaults/nrg.json). You can override any of those properties for both `prod` and `dev` builds.
 
-### `nrg dev`
+### ⬛ `nrg dev`
 
 The nrg dev command starts a development environment for your Node-RED project. This allows you to iterate quickly, testing changes in real-time as you build.
 
@@ -40,7 +40,7 @@ Use this command to work interactively on your custom nodes or plugins, making d
 
 In order to run a `prod` build locally, use the following command `nrg dev -o -e prod`.
 
-### `nrg create`
+### ⬛ `nrg create`
 
 Use this command to create an nrg project with ease.
 
@@ -48,7 +48,7 @@ Use this command to create an nrg project with ease.
 nrg create -n <project-name>
 ```
 
-### `nrg create node`
+### ⬛ `nrg create node`
 
 Use this command to create node-red nodes for an nrg project.
 
@@ -334,7 +334,7 @@ The cli must be added as a dev dependency because it has the following peer depe
 
 Here’s a sneak peek at what's coming, once the aforementioned commands are stable.
 
-### `nrg create plugin`
+### ⬛ `nrg create plugin`
 
 For more complex use cases, this command will generate a plugin structure for Node-RED, setting up everything you need to build advanced functionality.
 
@@ -342,7 +342,7 @@ For more complex use cases, this command will generate a plugin structure for No
 nrg create plugin <plugin-name>
 ```
 
-### `nrg create node --type widget`
+### ⬛ `nrg create node --type widget`
 
 This command will generate a node for dashboard 2.0.
 
