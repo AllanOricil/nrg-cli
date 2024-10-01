@@ -212,7 +212,7 @@ this.globalContext.set("key", value);
 
 Read more aobut it in this Node-RED [doc](https://nodered.org/docs/creating-nodes/context).
 
-## Configuration File
+## ⚙️ Configuration File
 
 In the root of an `nrg` project, there must exist a config file. This config must be any of the following formats:
 
@@ -293,7 +293,7 @@ module.exports = {
 
 All Node-RED settings that you can use with `nodeRed` can be found in this Node-RED [doc](https://nodered.org/docs/user-guide/runtime/configuration).
 
-## `package.json`
+## 📦 `package.json`
 
 Below is the bare minimum `package.json` configuration. Attention for the `node-red.nodes.nodes` property. It must be `dist/index.js`, which is the entrypoint of the build that is located in the `dist` folder. In the future you won't need to setup this by hand.
 
@@ -316,13 +316,14 @@ Below is the bare minimum `package.json` configuration. Attention for the `node-
     "start:prod": "nrg dev -o -d -e prod"
   },
   "node-red": {
+    "version": ">=3.1",
     "nodes": {
       "nodes": "dist/index.js"
     }
   },
   "dependencies": {},
   "devDependencies": {
-    "@allanoricil/nrg-cli": "1.2.1"
+    "@allanoricil/nrg-cli": "1.2.4"
   }
 }
 ```
