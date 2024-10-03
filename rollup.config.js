@@ -10,7 +10,9 @@ export default [
       typescript(),
       replace({
         preventAssignment: true,
-        "process.env.RELEASE_TAG": JSON.stringify(process.env.RELEASE_TAG),
+        "process.env.RELEASE_VERSION": JSON.stringify(
+          process.env.RELEASE_VERSION
+        ),
       }),
     ],
     external: ["./node_modules/node-machine-id"],
