@@ -17,6 +17,10 @@
 
 ## ✨ Commands
 
+> [!WARNING]
+>
+> [Sentry](https://sentry.io/) is used to collect metrics, traces and errors while running the CLI. Read more about it in the [Telemetry](#telemetry) section of this document.
+
 ### ⬛ `nrg build`
 
 The `nrg build` command compiles and packages your Node-RED nodes or plugins, ensuring everything is bundled and ready for deployment.
@@ -364,6 +368,37 @@ You can also install it globally, using the following command
 npm install @allanoricil/nrg-cli -g
 ```
 
+## 📊 Telemetry
+
+This project uses [Sentry](https://sentry.io/) to collect anonymous telemetry data to help improve the CLI tool's functionality and user experience. Below is an outline of what data is collected:
+
+### What Data is Collected?
+
+- **Commands Executed**: The specific CLI commands that are run.
+- **Command Arguments**: The arguments passed to the CLI commands (excluding sensitive information like passwords, API keys, or other personal data).
+- **Errors and Exceptions**: If a command encounters an error or exception, details about the error (such as stack traces) are captured to aid in debugging and improving the tool.
+
+### How is the Data Used?
+
+- **Improving Features**: Understanding which commands and options are used most frequently helps prioritize new features and updates.
+- **Debugging**: Error reports assist in identifying bugs and ensuring the tool works smoothly.
+- **Performance Monitoring**: Sentry allows us to monitor the performance of the CLI to ensure it is efficient and responsive.
+
+### Data Privacy
+
+- **No Personal Information**: We do not collect any personally identifiable information (PII). Sensitive data like passwords, tokens, or confidential user input is never collected or logged.
+- **Anonymized Data**: All telemetry data is anonymous and used only for the purposes outlined above.
+
+### Opting Out
+
+If you prefer not to send telemetry data, you can disable it by setting an environment variable:
+
+```bash
+export NRG_DISABLE_TELEMETRY=true
+```
+
+Alternatively, you can use the `--no-telemetry` flag with each command to disable telemetry.
+
 ## 🤝 Contributing
 
 I welcome contributions! If you'd like to help improve nrg, feel free to open issues or submit pull requests. Your feedback is appreciated.
@@ -377,8 +412,9 @@ This project is licensed under the [MIT License](https://github.com/AllanOricil/
 If this CLI has made your life easier, consider supporting its development by clicking the button below.
 
 <a href="https://www.buymeacoffee.com/allanoricil" target="_blank">
-  <img 
-      src="https://cdn.buymeacoffee.com/buttons/v2/default-yellow.png" 
-      alt="Buy Me A Coffee" 
+  <img
+      src="https://cdn.buymeacoffee.com/buttons/v2/default-yellow.png"
+      alt="Buy Me A Coffee"
       style="width: 217px;" />
 </a>
+```

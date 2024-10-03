@@ -3,3 +3,5 @@ node_modules
 dist
 logs
 coverage
+# Sentry Config File
+.env.sentry-build-plugin

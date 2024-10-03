@@ -11,6 +11,8 @@ import {
 import nodePlop from "node-plop";
 import chalk from "chalk";
 import { getPlopfileFilepath, getCLIInfo } from "./utils";
+import * as Sentry from "@sentry/node";
+import "./telemetry";
 
 const version = getCLIInfo();
 
@@ -24,9 +26,22 @@ const y = yargs(hideBin(process.argv))
 
 // NOTE: it is parsed here to retrieve the subcommand information, which is used to change the create command
 const argv = await y.parse();
+const subcommand = argv._[1];
 
 y.version(version)
   .alias("v", "version")
+  .option("no-telemetry", {
+    type: "boolean",
+    description: "Disable telemetry",
+    boolean: true,
+    default: false,
+  })
+  .middleware((argv) => {
+    if (argv.noTelemetry) {
+      Sentry.close();
+      console.log(chalk.yellow("Telemetry is disabled."));
+    }
+  })
   .command<{
     environment: "dev" | "prod";
   }>(
@@ -41,10 +56,22 @@ y.version(version)
         description: "Build environment",
       });
     },
-    async (argv) => {
-      const { config } = await loadConfig();
-      config.build.environment = argv.environment;
-      await build(config);
+    (argv) => {
+      Sentry.startSpan(
+        {
+          name: "build",
+          op: "build",
+          startTime: Date.now(),
+        },
+        async (span) => {
+          span.setAttribute("argv", JSON.stringify(argv));
+
+          const { environment } = argv;
+          const { config } = await loadConfig();
+          config.build.environment = environment;
+          await build(config);
+        },
+      );
     },
   )
   .command<{
@@ -80,21 +107,33 @@ y.version(version)
           description: "Open the browser",
         });
     },
-    async (argv) => {
-      const { config, filepath } = await loadConfig();
-      const { port, listener } = await startListener(config);
+    (argv) => {
+      Sentry.startSpan(
+        {
+          name: "dev",
+          op: "dev",
+          startTime: Date.now(),
+        },
+        async (span) => {
+          span.setAttribute("argv", JSON.stringify(argv));
 
-      config.build.environment = argv.environment;
-      config.dev.debug = argv.debug;
-      config.dev.open = argv.open;
-      config.dev.port = port;
+          const { config, filepath } = await loadConfig();
+          const { port, listener } = await startListener(config);
+          const { environment, debug, open, watch } = argv;
 
-      if (argv.watch) {
-        await startWatcher(config, filepath);
-      }
+          config.build.environment = environment;
+          config.dev.debug = debug;
+          config.dev.open = open;
+          config.dev.port = port;
 
-      await build(config);
-      await startNodeRed(config, listener);
+          if (watch) {
+            await startWatcher(config, filepath);
+          }
+
+          await build(config);
+          await startNodeRed(config, listener);
+        },
+      );
     },
   )
   .command<{
@@ -109,8 +148,6 @@ y.version(version)
     "create [subcommand]",
     "Create a new nrg project or node",
     (yargs) => {
-      const subcommand = argv._[1];
-
       const builder = yargs
         .positional("subcommand", {
           describe:
@@ -180,65 +217,81 @@ y.version(version)
 
       return builder;
     },
-    async (argv) => {
-      const {
-        subcommand,
-        projectName,
-        nodeName,
-        nodeCategory,
-        nodeColor,
-        nodeInputs,
-        nodeOutputs,
-      } = argv;
-      const plopfilePath = getPlopfileFilepath();
-      const plop = await nodePlop(plopfilePath);
-      if (!subcommand) {
-        const generator = plop.getGenerator("create");
-        const cliAnswers = [
-          projectName || "_",
-          nodeName || "_",
-          nodeCategory || "_",
-          nodeColor || "_",
-          nodeInputs || "_",
-          nodeOutputs || "_",
-        ];
-        const promptAnswers = await generator.runPrompts(cliAnswers);
-        await generator.runActions(promptAnswers);
+    (argv) => {
+      Sentry.startSpan(
+        {
+          name: `create ${argv.subcommand || ""}`,
+          op: `create ${argv.subcommand || ""}`,
+          startTime: Date.now(),
+        },
+        async (span) => {
+          span.setAttribute("argv", JSON.stringify(argv));
 
-        console.log(
-          chalk.green(`\n🎉 Your project has been created successfully! 🎉`),
-        );
-        console.log(
-          chalk.green(`\nLet’s get started with a couple of quick steps:`),
-        );
-        console.log(chalk.green(`1. Navigate into your project directory:`));
-        console.log(
-          chalk.green(`   cd ${projectName || promptAnswers.projectName}`),
-        );
-        console.log(
-          chalk.green(
-            `2. Install the dependencies using your favorite package manager.`,
-          ),
-        );
-        console.log(
-          chalk.green(`\nHappy coding! If you need help, just ask! 🚀\n`),
-        );
-      } else if (subcommand === "node") {
-        const generator = plop.getGenerator("create:node");
-        const cliAnswers = [
-          nodeName || "_",
-          nodeCategory || "_",
-          nodeColor || "_",
-          nodeInputs || "_",
-          nodeOutputs || "_",
-        ];
-        const promptAnswers = await generator.runPrompts(cliAnswers);
-        await generator.runActions(promptAnswers);
+          const {
+            subcommand,
+            projectName,
+            nodeName,
+            nodeCategory,
+            nodeColor,
+            nodeInputs,
+            nodeOutputs,
+          } = argv;
 
-        console.log(
-          chalk.green(`\n🎉 Your node has been created successfully! 🎉`),
-        );
-      }
+          const plopfilePath = getPlopfileFilepath();
+          const plop = await nodePlop(plopfilePath);
+          if (!subcommand) {
+            const generator = plop.getGenerator("create");
+            const cliAnswers = [
+              projectName || "_",
+              nodeName || "_",
+              nodeCategory || "_",
+              nodeColor || "_",
+              nodeInputs || "_",
+              nodeOutputs || "_",
+            ];
+            const promptAnswers = await generator.runPrompts(cliAnswers);
+            await generator.runActions(promptAnswers);
+
+            console.log(
+              chalk.green(
+                `\n🎉 Your project has been created successfully! 🎉`,
+              ),
+            );
+            console.log(
+              chalk.green(`\nLet’s get started with a couple of quick steps:`),
+            );
+            console.log(
+              chalk.green(`1. Navigate into your project directory:`),
+            );
+            console.log(
+              chalk.green(`   cd ${projectName || promptAnswers.projectName}`),
+            );
+            console.log(
+              chalk.green(
+                `2. Install the dependencies using your favorite package manager.`,
+              ),
+            );
+            console.log(
+              chalk.green(`\nHappy coding! If you need help, just ask! 🚀\n`),
+            );
+          } else if (subcommand === "node") {
+            const generator = plop.getGenerator("create:node");
+            const cliAnswers = [
+              nodeName || "_",
+              nodeCategory || "_",
+              nodeColor || "_",
+              nodeInputs || "_",
+              nodeOutputs || "_",
+            ];
+            const promptAnswers = await generator.runPrompts(cliAnswers);
+            await generator.runActions(promptAnswers);
+
+            console.log(
+              chalk.green(`\n🎉 Your node has been created successfully! 🎉`),
+            );
+          }
+        },
+      );
     },
   )
   .demandCommand(1, "You need at least one command before moving on")

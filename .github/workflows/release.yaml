@@ -17,12 +17,23 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4.1.1
+        with:
+          fetch-depth: 0
 
       - name: Setup Node
         uses: actions/setup-node@v4.0.1
         with:
           node-version: 20
           cache: npm
+
+      - name: Semantic Release
+        uses: cycjimmy/semantic-release-action@v4.1.1
+        id: semantic
+        env:
+          GITHUB_TOKEN: ${{ secrets.GH_PAT }}
+          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
+        with:
+          dry_run: true
 
       - name: Install Dependencies
         run: npm ci --ignore-scripts
@@ -33,15 +44,27 @@ jobs:
       - name: Lint
         run: npm run lint
 
-      # - name: Test
-      #   run: npm run test
+      - name: Test
+        run: npm run test
 
       - name: Build
+        env:
+          RELEASE_VERSION: ${{ steps.semantic.outputs.new_release_version }}
         run: npm run build
 
       - name: Semantic Release
+        uses: cycjimmy/semantic-release-action@v4.1.1
         env:
-          HUSKY: 0
-          GH_TOKEN: ${{ secrets.GH_PAT }}
+          GITHUB_TOKEN: ${{ secrets.GH_PAT }}
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
-        run: npx semantic-release
+
+      - name: Create Sentry release
+        uses: getsentry/action-release@v1
+        env:
+          SENTRY_AUTH_TOKEN: ${{ secrets.SENTRY_AUTH_TOKEN }}
+          SENTRY_ORG: ${{ secrets.SENTRY_ORG }}
+          SENTRY_PROJECT: ${{ secrets.SENTRY_PROJECT }}
+        with:
+          environment: production
+          sourcemaps: ./dist
+          version: ${{ steps.semantic.outputs.new_release_version }}
