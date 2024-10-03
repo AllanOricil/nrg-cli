@@ -1,3 +1,15 @@
+# [1.3.0](https://github.com/AllanOricil/nrg-cli/compare/v1.2.4...v1.3.0) (2024-10-03)
+
+
+### Bug Fixes
+
+* change node-machine-uid to machine-uuid ([edba54c](https://github.com/AllanOricil/nrg-cli/commit/edba54c88a91cc0198afb835fee2d69634559224))
+
+
+### Features
+
+* configure sentry for telemetry data ([8782e51](https://github.com/AllanOricil/nrg-cli/commit/8782e51f3bf10992f4cfe8c212ca835ac77c06c3))
+
 ## [1.2.4](https://github.com/AllanOricil/nrg-cli/compare/v1.2.3...v1.2.4) (2024-10-01)
 
 
