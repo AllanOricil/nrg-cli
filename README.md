@@ -19,7 +19,7 @@
 
 > [!WARNING]
 >
-> [Sentry](https://sentry.io/) is used to collect metrics, traces and errors while running the CLI. Read more about it in the [Telemetry](#telemetry) section of this document.
+> [Sentry](https://sentry.io/) is used to collect metrics, traces and errors while running the CLI. Read more about it in the [Telemetry](#-telemetry) section of this document.
 
 ### ⬛ `nrg build`
 
