@@ -92,4 +92,4 @@ function getCLIInfo(): string {
   return `${chalk.red(logo)}\n${message}\n`;
 }
 
-export { getPlopfileFilepath, getCLIInfo };
+export { getPlopfileFilepath, getPackageJson, getCLIInfo };
