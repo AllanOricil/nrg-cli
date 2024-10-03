@@ -417,4 +417,3 @@ If this CLI has made your life easier, consider supporting its development by cl
       alt="Buy Me A Coffee"
       style="width: 217px;" />
 </a>
-```
