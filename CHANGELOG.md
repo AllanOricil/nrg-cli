@@ -1,3 +1,10 @@
+## [1.3.2](https://github.com/AllanOricil/nrg-cli/compare/v1.3.1...v1.3.2) (2024-10-03)
+
+
+### Bug Fixes
+
+* set version in sentry at runtime instead of build time ([540dd56](https://github.com/AllanOricil/nrg-cli/commit/540dd565851690f86db1e093500928f71a8b4787))
+
 ## [1.3.1](https://github.com/AllanOricil/nrg-cli/compare/v1.3.0...v1.3.1) (2024-10-03)
 
 
