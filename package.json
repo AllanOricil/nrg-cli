@@ -53,7 +53,7 @@
     "@sentry/profiling-node": "^8.32.0",
     "chalk": "^5.3.0",
     "global-modules": "^2.0.0",
-    "node-machine-uid": "^1.0.2",
+    "machine-uuid": "^1.2.0",
     "node-plop": "^0.32.0",
     "pkg-dir": "^8.0.0",
     "yargs": "^17.7.2"
