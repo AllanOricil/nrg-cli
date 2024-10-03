@@ -1,3 +1,10 @@
+## [1.3.1](https://github.com/AllanOricil/nrg-cli/compare/v1.3.0...v1.3.1) (2024-10-03)
+
+
+### Bug Fixes
+
+* fix the name of the env variable that has to be changed at build time ([bb1da08](https://github.com/AllanOricil/nrg-cli/commit/bb1da080809da8f3b346dfffb2205d924608b1a4))
+
 # [1.3.0](https://github.com/AllanOricil/nrg-cli/compare/v1.2.4...v1.3.0) (2024-10-03)
 
 
