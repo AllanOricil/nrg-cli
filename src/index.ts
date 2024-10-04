@@ -10,11 +10,11 @@ import {
 } from "@allanoricil/nrg-core";
 import nodePlop from "node-plop";
 import chalk from "chalk";
-import { getPlopfileFilepath, getCLIInfo } from "./utils";
+import { getPlopfileFilepath, getPackageJson, getCLIInfo } from "./utils";
 import * as Sentry from "@sentry/node";
 import "./telemetry";
 
-const version = getCLIInfo();
+const cliInfo = getCLIInfo();
 
 // NOTE: version is disabled to avoid processing -v | --version flags during the first parse call, which would cause the version output to be displayed twice
 // NOTE: help is disabled to avoid processing the default --help flag during the first parse call, which would cause the help output to be displayed twice
@@ -28,7 +28,7 @@ const y = yargs(hideBin(process.argv))
 const argv = await y.parse();
 const subcommand = argv._[1];
 
-y.version(version)
+y.version(cliInfo)
   .alias("v", "version")
   .option("no-telemetry", {
     type: "boolean",
@@ -226,6 +226,7 @@ y.version(version)
         },
         async (span) => {
           span.setAttribute("argv", JSON.stringify(argv));
+          const version = getPackageJson().version;
 
           const {
             subcommand,
@@ -248,6 +249,7 @@ y.version(version)
               nodeColor || "_",
               nodeInputs || "_",
               nodeOutputs || "_",
+              version,
             ];
             const promptAnswers = await generator.runPrompts(cliAnswers);
             await generator.runActions(promptAnswers);
@@ -282,6 +284,7 @@ y.version(version)
               nodeColor || "_",
               nodeInputs || "_",
               nodeOutputs || "_",
+              version,
             ];
             const promptAnswers = await generator.runPrompts(cliAnswers);
             await generator.runActions(promptAnswers);
