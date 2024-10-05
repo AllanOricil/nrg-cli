@@ -1,3 +1,10 @@
+## [1.4.1](https://github.com/AllanOricil/nrg-cli/compare/v1.4.0...v1.4.1) (2024-10-05)
+
+
+### Bug Fixes
+
+* watch mode won't kill the process anymore when a rebuild fails ([932fe1e](https://github.com/AllanOricil/nrg-cli/commit/932fe1e644bee82aa634b9fb4a85e495c0eb8c69))
+
 # [1.4.0](https://github.com/AllanOricil/nrg-cli/compare/v1.3.2...v1.4.0) (2024-10-04)
 
 
