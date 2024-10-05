@@ -47,7 +47,7 @@
     }
   },
   "dependencies": {
-    "@allanoricil/nrg-core": "1.2.4",
+    "@allanoricil/nrg-core": "1.2.5",
     "@allanoricil/nrg-generator": "1.1.0",
     "@sentry/node": "^8.32.0",
     "@sentry/profiling-node": "^8.32.0",
