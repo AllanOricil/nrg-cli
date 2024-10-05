@@ -328,7 +328,7 @@ Below is the bare minimum `package.json` configuration. Attention for the `node-
   },
   "dependencies": {},
   "devDependencies": {
-    "@allanoricil/nrg-cli": "1.2.4"
+    "@allanoricil/nrg-cli": "1.4.0"
   }
 }
 ```
