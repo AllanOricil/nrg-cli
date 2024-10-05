@@ -16,6 +16,20 @@
 
 **nrg** (pronounced "energy") is a CLI tool designed to empower Node-RED developers with speed and efficiency. The name **nrg** stands for **Node-RED Generator**, but it's pronounced like "energy" to symbolize the power and momentum it brings to your workflow. Just as energy drives systems forward, **nrg** accelerates your development process, helping you quickly generate, build, and manage Node-RED nodes and plugins. Whether you're building simple automations or complex integrations, **nrg** ensures that you can focus your energy on writing meaningful code, while it takes care of the setup and scaffolding.
 
+## 🛠️ Integrated Toolchain
+
+This CLI comes with a set of embedded tools to streamline your development workflow. These tools are preconfigured to handle common tasks such as bundling, transpiling, and optimizing assets, so you can focus on building your project without manual setup.
+
+- [esbuild](https://github.com/AllanOricil/nrg/blob/e68363270c09a183a26bdfb8580b30fd2e74c7fd/package.json#L58): A fast and highly efficient JavaScript bundler and minifier.
+- [postcss](https://github.com/AllanOricil/nrg/blob/e68363270c09a183a26bdfb8580b30fd2e74c7fd/package.json#L67): A powerful tool for transforming CSS with plugins, enabling features like autoprefixing, nesting, and custom properties.
+- [html-minifier-terser](https://github.com/AllanOricil/nrg/blob/e68363270c09a183a26bdfb8580b30fd2e74c7fd/package.json#L62): A tool to minify and optimize HTML files, reducing file size for faster loading times.
+
+These integrated tools help ensure your code is optimized and production-ready with minimal configuration.
+
+> [!NOTE]
+>
+> In the future, [esbuild](https://esbuild.github.io/) will be replaced by [rolldown](https://rolldown.rs/)
+
 ## ✨ Commands
 
 > [!WARNING]
