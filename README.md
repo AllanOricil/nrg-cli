@@ -152,7 +152,7 @@ Available properties can be found in this Node-RED [doc](https://nodered.org/doc
 The server entrypoint must be named as `index.js`, and it must export a default class as follows:
 
 ```js
-import { Node } from "@allanoricil/node-red-node";
+import { Node } from "@allanoricil/nrg-nodes";
 
 export default class Node1 extends Node {
   // NOTE: executed every time an instance of your node is created
@@ -342,7 +342,7 @@ Below is the bare minimum `package.json` configuration. Attention for the `node-
   },
   "dependencies": {},
   "devDependencies": {
-    "@allanoricil/nrg-cli": "1.4.0"
+    "@allanoricil/nrg-cli": "2.0.0"
   }
 }
 ```
