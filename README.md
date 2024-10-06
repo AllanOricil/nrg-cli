@@ -1,5 +1,5 @@
 <p align="center">
-  <img alt="nrg-icon" src="https://gist.githubusercontent.com/AllanOricil/84412df273de46b28c5d6945b391afd4/raw/00af546f5a8e36fb8ceee4a5ab7f6c693ba3c7b7/nrg-icon.svg" style="width: 200px"/>
+  <img alt="nrg-icon" src="https://gist.githubusercontent.com/AllanOricil/84412df273de46b28c5d6945b391afd4/raw/0c9cdb994c40ab3d7b7ad06dcee162145d77d531/nrg-icon.svg" style="width: 200px"/>
 </p>
 <br/>
 <p align="center">
