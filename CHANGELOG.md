@@ -1,3 +1,19 @@
+# [2.0.0](https://github.com/AllanOricil/nrg-cli/compare/v1.4.1...v2.0.0) (2024-10-06)
+
+
+* feat!: renaming @allanoricil/node-red-node to @allanoricil/nrg-nodes ([770e739](https://github.com/AllanOricil/nrg-cli/commit/770e739f5ba433e49f13a5ca8fbb2e81daa71dc5))
+
+
+### Features
+
+* **deps:** bump @allanoricil/nrg-generator from 1.1.0 to 1.2.0 releasing the redesigned logo ([49c41bb](https://github.com/AllanOricil/nrg-cli/commit/49c41bbc8c61d5a726ac09d68bbad56fa5ae2697))
+
+
+### BREAKING CHANGES
+
+* all node imports using @allanoricil/node-red-node must be renamed
+to @allanoricil/nrg-nodes
+
 ## [1.4.1](https://github.com/AllanOricil/nrg-cli/compare/v1.4.0...v1.4.1) (2024-10-05)
 
 
