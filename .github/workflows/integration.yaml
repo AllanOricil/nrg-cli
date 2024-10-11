@@ -94,7 +94,7 @@ jobs:
 
           cd test-project-1
           npm install
-          npm ls @allanoricil/node-red-node
+          npm ls @allanoricil/nrg-nodes
           npm ls @allanoricil/nrg-core
           npm ls @allanoricil/nrg-generator
           nrg create node -n node-2 --node-category custom-nodes --node-color "#FFFFFF" --node-inputs 1 --node-outputs 1
