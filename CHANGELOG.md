@@ -1,3 +1,10 @@
+## [2.1.1](https://github.com/AllanOricil/nrg-cli/compare/v2.1.0...v2.1.1) (2024-10-13)
+
+
+### Bug Fixes
+
+* **release:** enable provenance in the release workflow ([187a95f](https://github.com/AllanOricil/nrg-cli/commit/187a95f739ba714b7f136dcdc6b1a780cdeb2b04))
+
 # [2.1.0](https://github.com/AllanOricil/nrg-cli/compare/v2.0.1...v2.1.0) (2024-10-13)
 
 
