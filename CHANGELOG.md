@@ -1,3 +1,15 @@
+# [2.1.0](https://github.com/AllanOricil/nrg-cli/compare/v2.0.1...v2.1.0) (2024-10-13)
+
+
+### Bug Fixes
+
+* **deps:** bump @allanoricil/nrg-generator from 1.3.0 to 1.3.1 ([eddb093](https://github.com/AllanOricil/nrg-cli/commit/eddb0936d4ba46e8eb1f614674bf43483590ca0c))
+
+
+### Features
+
+* **deps:** builds will have html wrapped with text/html instead of text/x-red ([a51ebbc](https://github.com/AllanOricil/nrg-cli/commit/a51ebbca0c5d03ef08045ec3d4653edc609d3075))
+
 ## [2.0.1](https://github.com/AllanOricil/nrg-cli/compare/v2.0.0...v2.0.1) (2024-10-11)
 
 
