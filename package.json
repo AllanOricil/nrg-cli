@@ -4,7 +4,8 @@
   "description": "A very simple CLI for building an nrg project",
   "license": "MIT",
   "publishConfig": {
-    "access": "public"
+    "access": "public",
+    "provenance": true
   },
   "type": "module",
   "main": "index.js",
@@ -27,6 +28,11 @@
     "url": "https://github.com/AllanOricil/nrg-cli/issues"
   },
   "homepage": "https://github.com/AllanOricil/nrg-cli#readme",
+  "keywords": [
+    "node-red",
+    "nrg",
+    "cli"
+  ],
   "scripts": {
     "build": "rollup -c rollup.config.js",
     "release": "semantic-release",
