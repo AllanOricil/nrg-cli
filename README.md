@@ -16,6 +16,15 @@
 
 **nrg** (pronounced "energy") is a CLI tool designed to empower Node-RED developers with speed and efficiency. The name **nrg** stands for **Node-RED Generator**, but it's pronounced like "energy" to symbolize the power and momentum it brings to your workflow. Just as energy drives systems forward, **nrg** accelerates your development process, helping you quickly generate, build, and manage Node-RED nodes and plugins. Whether you're building simple automations or complex integrations, **nrg** ensures that you can focus your energy on writing meaningful code, while it takes care of the setup and scaffolding.
 
+## 💡 Examples
+
+| Name                          | Repository                                                   |
+| ----------------------------- | ------------------------------------------------------------ |
+| nrg-template                  | https://github.com/AllanOricil/nrg-template                  |
+| node-red-oidc-provider        | https://github.com/AllanOricil/node-red-oidc-provider        |
+| node-red-salesforce           | in development                                               |
+| node-red-spreadsheet-template | https://github.com/AllanOricil/node-red-spreadsheet-template |
+
 ## 🛠️ Integrated Toolchain
 
 This CLI comes with a set of embedded tools to streamline your development workflow. These tools are preconfigured to handle common tasks such as bundling, transpiling, and optimizing assets, so you can focus on building your project without manual setup.
