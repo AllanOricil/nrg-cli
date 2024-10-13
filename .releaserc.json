@@ -15,7 +15,7 @@
     [
       "@semantic-release/github",
       {
-        "assets": ["dist/**"]
+        "assets": ["dist.zip"]
       }
     ]
   ]

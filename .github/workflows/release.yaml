@@ -53,6 +53,9 @@ jobs:
           RELEASE_VERSION: ${{ steps.semantic.outputs.new_release_version }}
         run: npm run build
 
+      - name: Zip dist
+        run: zip -r dist.zip dist
+
       - name: Attest
         uses: actions/attest-build-provenance@v1.4.3
         with:
@@ -79,3 +82,9 @@ jobs:
           environment: production
           sourcemaps: ./dist
           version: ${{ steps.semantic.outputs.new_release_version }}
+
+      - name: Upload Artifact
+        uses: actions/upload-artifact@v4.4.3
+        with:
+          name: dist
+          path: dist.zip
