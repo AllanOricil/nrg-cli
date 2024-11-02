@@ -1,3 +1,10 @@
+## [2.2.2](https://github.com/AllanOricil/nrg-cli/compare/v2.2.1...v2.2.2) (2024-11-02)
+
+
+### Bug Fixes
+
+* **deps:** bump @allanoricil/nrg-core from 1.5.1 to 1.5.2 ([c911df9](https://github.com/AllanOricil/nrg-cli/commit/c911df979e9492d3a4067303d1fa3bd478c9160a))
+
 ## [2.2.1](https://github.com/AllanOricil/nrg-cli/compare/v2.2.0...v2.2.1) (2024-10-28)
 
 
