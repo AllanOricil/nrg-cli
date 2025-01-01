@@ -12,7 +12,7 @@
   <a href="https://github.com/AllanOricil/nrg-cli/actions/workflows/macos.yaml"><img src="https://github.com/AllanOricil/nrg-cli/actions/workflows/macos.yaml/badge.svg?branch=main" alt="macos integration tests status"></a>
 </p>
 
-# ⚡️ nrg - Node-RED Generator 
+# ⚡️ nrg - Node-RED Generator
 
 **nrg** (pronounced "energy") is a CLI tool designed to empower Node-RED developers with speed and efficiency. The name **nrg** stands for **Node-RED Generator**, but it's pronounced like "energy" to symbolize the power and momentum it brings to your workflow. Just as energy drives systems forward, **nrg** accelerates your development process, helping you quickly generate, build, and manage Node-RED nodes and plugins. Whether you're building simple automations or complex integrations, **nrg** ensures that you can focus your energy on writing meaningful code, while it takes care of the setup and scaffolding.
 
@@ -24,7 +24,7 @@ Clearly, the best model to write nodes for Node-RED.
 | ----------------------------- | ------------------------------------------------------------ |
 | nrg-template                  | https://github.com/AllanOricil/nrg-template                  |
 | node-red-oidc-provider        | https://github.com/AllanOricil/node-red-oidc-provider        |
-| node-red-salesforce           | in development                                               |
+| node-red-salesforce           | https://github.com/AllanOricil/node-red-salesforce           |
 | node-red-spreadsheet-template | https://github.com/AllanOricil/node-red-spreadsheet-template |
 
 ## 🛠️ Integrated Toolchain
