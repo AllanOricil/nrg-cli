@@ -1,4 +1,7 @@
-### deprecated because has no value fya
+> [!IMPORTANT]
+> I don't believe Node-RED can deliver maintainable and secure code for customers without a standardized approach to writing the client and server-side components of a node or plugin. Without such standards, it becomes easy for inexperienced or careless developers to publish poorly structured, "spaghetti" code that could lead to serious vulnerabilities, such as the exposure or theft of sensitive data. To address this issue, I initiated this project. So far, I’ve successfully developed a simple API for the server-side portion of a node, effectively abstracting away boilerplate code and simplifying the development process. However, I encountered significant challenges in achieving the same level of simplicity for the client-side. While it’s not impossible, it would require a substantial amount of effort to eliminate dependencies like jQuery and refactor input types using modern frameworks such as Vue, Svelte, or Lightning Web Components (LWC). Unfortunately, this level of work is beyond the capacity of a single unpaid developer.
+> My tests showed people don't care about writting code in a standard way. I shared it in the NR forum, but it didn't get attention. Even the creators of Node-RED ignored it. This experiment was an evidence that people just don't understand the issues that unmaintainable code can cause.
+> Maybe with a bit of the Halo Effect, this could help convince people of the framework's importance, but I'm not such person.
 
 <p align="center">
   <img alt="nrg-icon" src="https://gist.githubusercontent.com/AllanOricil/84412df273de46b28c5d6945b391afd4/raw/0c9cdb994c40ab3d7b7ad06dcee162145d77d531/nrg-icon.svg" style="width: 200px"/>
