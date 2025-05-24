@@ -37,10 +37,6 @@ This CLI comes with a set of embedded tools to streamline your development workf
 
 These integrated tools help ensure your code is optimized and production-ready with minimal configuration.
 
-> [!NOTE]
->
-> In the future, [esbuild](https://esbuild.github.io/) will be replaced by [rolldown](https://rolldown.rs/)
-
 ## ✨ Commands
 
 > [!WARNING]
