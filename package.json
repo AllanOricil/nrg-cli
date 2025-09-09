@@ -60,7 +60,7 @@
     "chalk": "^5.3.0",
     "global-modules": "^2.0.0",
     "machine-uuid": "^1.2.0",
-    "node-plop": "^0.32.0",
+    "node-plop": "^0.32.1",
     "pkg-dir": "^8.0.0",
     "yargs": "^17.7.2"
   },
